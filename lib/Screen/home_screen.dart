@@ -38,11 +38,16 @@ class _HomeScreenState extends State<HomeScreen> {
       builder:
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         if (snapshot.hasError) {
-          return Text("Something went wrong");
+          return Scaffold(body: Center(child: Text("Something went wrong")));
         }
 
         if (snapshot.hasData && !snapshot.data!.exists) {
-          return Text("Document does not exist");
+          return Scaffold(
+            body: Center(
+              child: Text("Document does not exist",
+                  style: TextStyle(color: Colors.teal, fontSize: 25)),
+            ),
+          );
         }
 
         if (snapshot.connectionState == ConnectionState.done) {
